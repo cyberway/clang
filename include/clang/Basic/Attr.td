@@ -1005,6 +1005,14 @@ def EosioTable : InheritableAttr {
    let Documentation = [EosioTableDocs];
 }
 
+def EosioEvent : InheritableAttr {
+   let Spellings = [CXX11<"eosio", "event">, GNU<"eosio_event">];
+   let Args = [StringArgument<"name", 1>];
+   let Subjects = SubjectList<[CXXRecord]>;
+   let MeaningfulToClassTemplateDefinition = 1;
+   let Documentation = [EosioEventDocs];
+}
+
 def CXX11NoReturn : InheritableAttr {
   let Spellings = [CXX11<"", "noreturn", 200809>];
   let Subjects = SubjectList<[Function], ErrorDiag>;
