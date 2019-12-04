@@ -894,6 +894,13 @@ The ``eosio::table`` attribute marks a record as being an eosio table.
   }];
 }
 
+def EosioEventDocs : Documentation {
+  let Category = DocCatFunction;
+  let Content = [{
+The ``eosio::event`` attribute marks a record as being an eosio event.
+  }];
+}
+
 def NoSplitStackDocs : Documentation {
   let Category = DocCatFunction;
   let Content = [{

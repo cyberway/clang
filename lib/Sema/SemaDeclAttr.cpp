@@ -481,6 +481,18 @@ static void handleEosioTableAttribute(Sema &S, Decl *D, const AttributeList &AL)
                                 AL.getAttributeSpellingListIndex()));
 }
 
+static void handleEosioEventAttribute(Sema &S, Decl *D, const AttributeList &AL) {
+  // Handle the cases where the attribute has a text message.
+  StringRef Str, Replacement;
+  if (AL.isArgExpr(0) && AL.getArgAsExpr(0) &&
+      !S.checkStringLiteralArgumentAttr(AL, 0, Str))
+    return;
+
+  D->addAttr(::new (S.Context)
+                 EosioEventAttr(AL.getRange(), S.Context, Str,
+                                AL.getAttributeSpellingListIndex()));
+}
+
 /// Applies the given attribute to the Decl without performing any
 /// additional semantic checking.
 template <typename AttrType>
@@ -5930,6 +5942,9 @@ static void ProcessDeclAttribute(Sema &S, Scope *scope, Decl *D,
     break;
   case AttributeList::AT_EosioTable:
     handleEosioTableAttribute(S, D, AL);
+    break;
+  case AttributeList::AT_EosioEvent:
+    handleEosioEventAttribute(S, D, AL);
     break;
   case AttributeList::AT_EosioWasmABI:
     handleEosioABIAttribute(S, D, AL);
