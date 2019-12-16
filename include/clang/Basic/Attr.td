@@ -997,12 +997,35 @@ def EosioAction : InheritableAttr {
    let Documentation = [EosioActionDocs];
 }
 
+def EosioOrder : InheritableAttr {
+   let Spellings = [CXX11<"eosio", "order">, GNU<"eosio_order">];
+   let Args = [StringArgument<"Field">, StringArgument<"Order", 1>];
+   let Subjects = SubjectList<[TypedefName]>;
+   let MeaningfulToClassTemplateDefinition = 1;
+   let Documentation = [EosioOrderDocs];
+}
+
+def EosioNonUnique : InheritableAttr {
+   let Spellings = [CXX11<"eosio", "non_unique">, GNU<"eosio_non_unique">];
+   let Subjects = SubjectList<[TypedefName]>;
+   let MeaningfulToClassTemplateDefinition = 1;
+   let Documentation = [EosioNonUniqueDocs];
+}
+
 def EosioTable : InheritableAttr {
    let Spellings = [CXX11<"eosio", "table">, GNU<"eosio_table">];
    let Args = [StringArgument<"name", 1>];
    let Subjects = SubjectList<[CXXRecord]>;
    let MeaningfulToClassTemplateDefinition = 1;
    let Documentation = [EosioTableDocs];
+}
+
+def EosioScopeType : InheritableAttr {
+   let Spellings = [CXX11<"eosio", "scope_type">, GNU<"eosio_scope_type">];
+   let Args = [StringArgument<"type">];
+   let Subjects = SubjectList<[TypedefName]>;
+   let MeaningfulToClassTemplateDefinition = 1;
+   let Documentation = [EosioScopeTypeDocs];
 }
 
 def EosioEvent : InheritableAttr {

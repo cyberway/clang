@@ -469,6 +469,24 @@ static void handleEosioActionAttribute(Sema &S, Decl *D, const AttributeList &AL
                                 AL.getAttributeSpellingListIndex()));
 }
 
+static void handleEosioOrderAttribute(Sema &S, Decl *D, const AttributeList &AL) {
+  StringRef Field, Order = "asc";
+  S.checkStringLiteralArgumentAttr(AL, 0, Field);
+
+  if (AL.getNumArgs() >= 2)
+    S.checkStringLiteralArgumentAttr(AL, 1, Order);
+
+  D->addAttr(::new (S.Context)
+                 EosioOrderAttr(AL.getRange(), S.Context, Field, Order,
+                                AL.getAttributeSpellingListIndex()));
+}
+
+static void handleEosioNonUniqueAttribute(Sema &S, Decl *D, const AttributeList &AL) {
+  D->addAttr(::new (S.Context)
+                 EosioNonUniqueAttr(AL.getRange(), S.Context,
+                                AL.getAttributeSpellingListIndex()));
+}
+
 static void handleEosioTableAttribute(Sema &S, Decl *D, const AttributeList &AL) {
   // Handle the cases where the attribute has a text message.
   StringRef Str, Replacement;
@@ -478,6 +496,15 @@ static void handleEosioTableAttribute(Sema &S, Decl *D, const AttributeList &AL)
 
   D->addAttr(::new (S.Context)
                  EosioTableAttr(AL.getRange(), S.Context, Str,
+                                AL.getAttributeSpellingListIndex()));
+}
+
+static void handleEosioScopeTypeAttribute(Sema &S, Decl *D, const AttributeList &AL) {
+  StringRef Str;
+  S.checkStringLiteralArgumentAttr(AL, 0, Str);
+
+  D->addAttr(::new (S.Context)
+                 EosioScopeTypeAttr(AL.getRange(), S.Context, Str,
                                 AL.getAttributeSpellingListIndex()));
 }
 
@@ -5940,8 +5967,17 @@ static void ProcessDeclAttribute(Sema &S, Scope *scope, Decl *D,
   case AttributeList::AT_EosioAction:
     handleEosioActionAttribute(S, D, AL);
     break;
+  case AttributeList::AT_EosioOrder:
+    handleEosioOrderAttribute(S, D, AL);
+    break;
+  case AttributeList::AT_EosioNonUnique:
+    handleEosioNonUniqueAttribute(S, D, AL);
+    break;
   case AttributeList::AT_EosioTable:
     handleEosioTableAttribute(S, D, AL);
+    break;
+  case AttributeList::AT_EosioScopeType:
+    handleEosioScopeTypeAttribute(S, D, AL);
     break;
   case AttributeList::AT_EosioEvent:
     handleEosioEventAttribute(S, D, AL);

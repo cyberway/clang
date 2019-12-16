@@ -887,10 +887,31 @@ The ``eosio::action`` attribute marks a method as being an eosio action.
   }];
 }
 
+def EosioOrderDocs : Documentation {
+  let Category = DocCatType;
+  let Content = [{
+The ``eosio::order`` attribute adds an order to index of eosio table.
+  }];
+}
+
+def EosioNonUniqueDocs : Documentation {
+  let Category = DocCatType;
+  let Content = [{
+The ``eosio::non_unique`` marks index of eosio table as non-unique.
+  }];
+}
+
 def EosioTableDocs : Documentation {
   let Category = DocCatFunction;
   let Content = [{
 The ``eosio::table`` attribute marks a record as being an eosio table.
+  }];
+}
+
+def EosioScopeTypeDocs : Documentation {
+  let Category = DocCatFunction;
+  let Content = [{
+The ``eosio::scope_type`` set custom scope type of eosio table.
   }];
 }
 

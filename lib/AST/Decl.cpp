@@ -4425,6 +4425,31 @@ TagDecl *TypedefNameDecl::getAnonDeclWithTypedefName(bool AnyRedecl) const {
   return nullptr;
 }
 
+bool TypedefNameDecl::hasEosioOrders()const { return hasAttr<EosioOrderAttr>(); }
+EosioOrders TypedefNameDecl::getEosioOrders()const {
+  EosioOrders ret;
+  for (auto* attr: getAttrs()) {
+    if (auto order = dyn_cast<EosioOrderAttr>(attr)) {
+      EosioOrder ord;
+      ord.field = order->getField();
+      ord.order = order->getOrder();
+      ret.push_back(ord);
+    }
+  }
+  return ret;
+}
+
+bool TypedefNameDecl::hasEosioNonUnique()const { return hasAttr<EosioNonUniqueAttr>(); }
+
+bool TypedefNameDecl::hasEosioTable()const { return hasAttr<EosioTableAttr>(); }
+std::string TypedefNameDecl::getEosioTable()const {
+  return getAttr<EosioTableAttr>()->getName();
+}
+bool TypedefNameDecl::hasEosioScopeType()const { return hasAttr<EosioScopeTypeAttr>(); }
+std::string TypedefNameDecl::getEosioScopeType()const {
+  return getAttr<EosioScopeTypeAttr>()->getType();
+}
+
 bool TypedefNameDecl::isTransparentTagSlow() const {
   auto determineIsTransparent = [&]() {
     if (auto *TT = getUnderlyingType()->getAs<TagType>()) {
