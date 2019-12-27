@@ -953,7 +953,7 @@ def EosioRicardian : InheritableAttr {
 def EosioContract : InheritableAttr {
    let Spellings = [CXX11<"eosio", "contract">, GNU<"eosio_contract">];
    let Args = [StringArgument<"name", 1>];
-   let Subjects = SubjectList<[CXXRecord, CXXMethod]>;
+   let Subjects = SubjectList<[CXXRecord, CXXMethod, TypedefName]>;
    let Documentation = [EosioContractDocs];
 }
 
