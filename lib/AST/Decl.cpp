@@ -4450,6 +4450,15 @@ std::string TypedefNameDecl::getEosioScopeType()const {
   return getAttr<EosioScopeTypeAttr>()->getType();
 }
 
+bool TypedefNameDecl::hasEosioContracts()const { return hasAttr<EosioContractAttr>(); }
+EosioContracts TypedefNameDecl::getEosioContracts()const {
+  EosioContracts ret;
+  for (auto* attr: getAttrs()) {
+    if (auto contract = dyn_cast<EosioContractAttr>(attr)) ret.push_back(contract->getName());
+  }
+  return ret;
+}
+
 bool TypedefNameDecl::isTransparentTagSlow() const {
   auto determineIsTransparent = [&]() {
     if (auto *TT = getUnderlyingType()->getAs<TagType>()) {

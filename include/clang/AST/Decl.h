@@ -2870,6 +2870,8 @@ struct EosioOrder {
 
 using EosioOrders = SmallVector<EosioOrder, 2>;
 
+using EosioContracts = SmallVector<std::string, 2>;
+
 /// Base class for declarations which introduce a typedef-name.
 class TypedefNameDecl : public TypeDecl, public Redeclarable<TypedefNameDecl> {
   struct LLVM_ALIGNAS(8) ModedTInfo {
@@ -2975,6 +2977,9 @@ public:
   std::string getEosioTable() const;
   bool hasEosioScopeType() const;
   std::string getEosioScopeType() const;
+
+  bool hasEosioContracts() const;
+  EosioContracts getEosioContracts() const;
 private:
   bool isTransparentTagSlow() const;
 };
