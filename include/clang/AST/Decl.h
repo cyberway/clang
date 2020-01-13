@@ -2863,15 +2863,6 @@ public:
   static bool classofKind(Kind K) { return K >= firstType && K <= lastType; }
 };
 
-struct EosioOrder {
-  std::string field;
-  std::string order;
-};
-
-using EosioOrders = SmallVector<EosioOrder, 2>;
-
-using EosioContracts = SmallVector<std::string, 2>;
-
 /// Base class for declarations which introduce a typedef-name.
 class TypedefNameDecl : public TypeDecl, public Redeclarable<TypedefNameDecl> {
   struct LLVM_ALIGNAS(8) ModedTInfo {
@@ -2970,7 +2961,6 @@ public:
   }
 
   bool hasEosioOrders() const;
-  EosioOrders getEosioOrders() const;
   bool hasEosioNonUnique() const;
 
   bool hasEosioTable() const;
@@ -2979,7 +2969,6 @@ public:
   std::string getEosioScopeType() const;
 
   bool hasEosioContracts() const;
-  EosioContracts getEosioContracts() const;
 private:
   bool isTransparentTagSlow() const;
 };
