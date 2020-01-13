@@ -478,19 +478,8 @@ public:
   AttrVec &getAttrs() {
     return const_cast<AttrVec&>(const_cast<const Decl*>(this)->getAttrs());
   }
+
   const AttrVec &getAttrs() const;
-
-  template<typename T>
-  SmallVector<T*, 4> getAttrs() const {
-    SmallVector<T*, 4> ret;
-    for (auto* attr: getAttrs()) {
-      if (auto spec_attr = dyn_cast<T>(attr)) {
-        ret.push_back(spec_attr);
-      }
-    }
-    return ret;
-  }
-
   void dropAttrs();
 
   void addAttr(Attr *A) {

@@ -734,7 +734,7 @@ public:
   EosioActionAttr* getEosioActionAttr() const { return getAttr<EosioActionAttr>(); }
   EosioTableAttr*  getEosioTableAttr() const { return getAttr<EosioTableAttr>(); }
   EosioEventAttr*  getEosioEventAttr() const { return getAttr<EosioEventAttr>(); }
-  SmallVector<EosioContractAttr*, 4>  getEosioContractAttrs() const { return getAttrs<EosioContractAttr>(); }
+  EosioContractAttr*  getEosioContractAttr() const { return getAttr<EosioContractAttr>(); }
   EosioRicardianAttr*  getEosioRicardianAttr() const { return getAttr<EosioRicardianAttr>(); }
 
   CXXRecordDecl *getCanonicalDecl() override {
@@ -2075,7 +2075,7 @@ public:
   bool hasEosioRicardian() const { return hasAttr<EosioRicardianAttr>(); }
   EosioActionAttr* getEosioActionAttr() const { return getAttr<EosioActionAttr>(); }
   EosioNotifyAttr* getEosioNotifyAttr() const { return getAttr<EosioNotifyAttr>(); }
-  SmallVector<EosioContractAttr*, 4>  getEosioContractAttrs() const { return getAttrs<EosioContractAttr>(); }
+  EosioContractAttr* getEosioContractAttr() const { return getAttr<EosioContractAttr>(); }
   EosioRicardianAttr* getEosioRicardianAttr() const { return getAttr<EosioRicardianAttr>(); }
 
   /// Returns true if the given operator is implicitly static in a record
