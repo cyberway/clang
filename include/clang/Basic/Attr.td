@@ -997,6 +997,13 @@ def EosioAction : InheritableAttr {
    let Documentation = [EosioActionDocs];
 }
 
+def EosioNoDispatch : InheritableAttr {
+   let Spellings = [CXX11<"eosio", "no_dispatch">, GNU<"eosio_no_dispatch">];
+   let Subjects = SubjectList<[CXXRecord, CXXMethod]>;
+   let MeaningfulToClassTemplateDefinition = 1;
+   let Documentation = [EosioNoDispatchDocs];
+}
+
 def EosioOrder : InheritableAttr {
    let Spellings = [CXX11<"eosio", "order">, GNU<"eosio_order">];
    let Args = [StringArgument<"Field">, StringArgument<"Order", 1>];

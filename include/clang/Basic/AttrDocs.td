@@ -887,6 +887,13 @@ The ``eosio::action`` attribute marks a method as being an eosio action.
   }];
 }
 
+def EosioNoDispatchDocs : Documentation {
+  let Category = DocCatFunction;
+  let Content = [{
+The ``eosio::no_dispatch`` attribute marks an action as not to be added to dispatcher of contract.
+  }];
+}
+
 def EosioOrderDocs : Documentation {
   let Category = DocCatType;
   let Content = [{

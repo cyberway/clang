@@ -727,6 +727,7 @@ public:
   using base_class_const_iterator = const CXXBaseSpecifier *;
   bool isEosioContract() const { return hasAttr<EosioContractAttr>(); }
   bool isEosioAction() const { return hasAttr<EosioActionAttr>(); }
+  bool hasEosioNoDispatch() const { return hasAttr<EosioNoDispatchAttr>(); }
   bool isEosioTable() const { return hasAttr<EosioTableAttr>(); }
   bool isEosioEvent() const { return hasAttr<EosioEventAttr>(); }
   bool isEosioIgnore() const { return hasAttr<EosioIgnoreAttr>(); }
@@ -2070,6 +2071,7 @@ public:
   bool isStatic() const;
   bool isInstance() const { return !isStatic(); }
   bool isEosioAction() const { return hasAttr<EosioActionAttr>(); }
+  bool hasEosioNoDispatch() const { return hasAttr<EosioNoDispatchAttr>(); }
   bool isEosioNotify() const { return hasAttr<EosioNotifyAttr>(); }
   bool isEosioContract() const { return hasAttr<EosioContractAttr>(); }
   bool hasEosioRicardian() const { return hasAttr<EosioRicardianAttr>(); }

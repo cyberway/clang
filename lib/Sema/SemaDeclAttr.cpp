@@ -469,6 +469,12 @@ static void handleEosioActionAttribute(Sema &S, Decl *D, const AttributeList &AL
                                 AL.getAttributeSpellingListIndex()));
 }
 
+static void handleEosioNoDispatchAttribute(Sema &S, Decl *D, const AttributeList &AL) {
+  D->addAttr(::new (S.Context)
+                 EosioNoDispatchAttr(AL.getRange(), S.Context,
+                                AL.getAttributeSpellingListIndex()));
+}
+
 static void handleEosioOrderAttribute(Sema &S, Decl *D, const AttributeList &AL) {
   StringRef Field, Order = "asc";
   S.checkStringLiteralArgumentAttr(AL, 0, Field);
@@ -5966,6 +5972,9 @@ static void ProcessDeclAttribute(Sema &S, Scope *scope, Decl *D,
     break;
   case AttributeList::AT_EosioAction:
     handleEosioActionAttribute(S, D, AL);
+    break;
+  case AttributeList::AT_EosioNoDispatch:
+    handleEosioNoDispatchAttribute(S, D, AL);
     break;
   case AttributeList::AT_EosioOrder:
     handleEosioOrderAttribute(S, D, AL);
