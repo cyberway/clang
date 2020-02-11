@@ -859,6 +859,13 @@ The ``eosio::ignore`` attribute marks a template struct as an ignorable type.
   }];
 }
 
+def EosioABIIgnoreDocs : Documentation {
+  let Category = DocCatFunction;
+  let Content = [{
+The ``eosio::abi_ignore`` attribute marks a template struct as an ignorable type. Supports structs having typedef aliases, or nested inside vectors, variants, etc.
+  }];
+}
+
 def EosioRicardianDocs : Documentation {
   let Category = DocCatFunction;
   let Content = [{

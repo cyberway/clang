@@ -730,6 +730,7 @@ public:
   bool isEosioTable() const { return hasAttr<EosioTableAttr>(); }
   bool isEosioEvent() const { return hasAttr<EosioEventAttr>(); }
   bool isEosioIgnore() const { return hasAttr<EosioIgnoreAttr>(); }
+  bool isEosioABIIgnore() const { return hasAttr<EosioABIIgnoreAttr>(); }
   bool hasEosioRicardian() const { return hasAttr<EosioRicardianAttr>(); }
   EosioActionAttr* getEosioActionAttr() const { return getAttr<EosioActionAttr>(); }
   EosioTableAttr*  getEosioTableAttr() const { return getAttr<EosioTableAttr>(); }

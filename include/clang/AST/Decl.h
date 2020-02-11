@@ -3655,6 +3655,7 @@ public:
   }
 
   bool isEosioIgnore() const;
+  bool isEosioABIIgnore() const;
 
   bool hasFlexibleArrayMember() const { return HasFlexibleArrayMember; }
   void setHasFlexibleArrayMember(bool V) { HasFlexibleArrayMember = V; }

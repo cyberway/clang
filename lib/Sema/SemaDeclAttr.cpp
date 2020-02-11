@@ -5964,6 +5964,9 @@ static void ProcessDeclAttribute(Sema &S, Scope *scope, Decl *D,
   case AttributeList::AT_EosioIgnore:
     handleSimpleAttribute<EosioIgnoreAttr>(S, D, AL);
     break;
+  case AttributeList::AT_EosioABIIgnore:
+    handleSimpleAttribute<EosioABIIgnoreAttr>(S, D, AL);
+    break;
   case AttributeList::AT_EosioAction:
     handleEosioActionAttribute(S, D, AL);
     break;

@@ -4011,6 +4011,7 @@ bool RecordDecl::isInjectedClassName() const {
 }
 
 bool RecordDecl::isEosioIgnore() const { return hasAttr<EosioIgnoreAttr>(); }
+bool RecordDecl::isEosioABIIgnore() const { return hasAttr<EosioABIIgnoreAttr>(); }
 
 bool RecordDecl::isLambda() const {
   if (auto RD = dyn_cast<CXXRecordDecl>(this))
